@@ -5,33 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="import" href="components/fetch-button.html">
 </head>
 <body>
-    <fetch-button></fetch-button>
-    <fetch-button></fetch-button>
-    <fetch-button></fetch-button>
-    <fetch-button></fetch-button>
-
-    <input type="submit">
-    
-    <script>
-    
-    class fetchButton extends HTMLElement{
-        constructor(){
-            super()
-        }
-
-        connectedCallback(){ // 
-            this.innerHTML = `<div>
-                <button> Fetch </button>
-            </div>
-            `
-        }
-    }
-
-    window.customElements.define('fetch-button',fetchButton)
-    
-    </script>
-
+    <fetch-button label="Ejecutar"></fetch-button>   
+    <fetch-button label="Imprimir"></fetch-button>   
 </body>
 </html>

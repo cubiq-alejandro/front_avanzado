@@ -1,0 +1,64 @@
+<html>
+    <template id="fetchButton">
+        <style>
+            .user-button{
+                padding: 10px;
+                background: #36a5c1;
+                color: white;
+                border: 0;
+                font-family: "Open Sans";
+                font-size: 17px;
+                letter-spacing: 2px;
+                margin-bottom: 50px;
+                text-transform: uppercase;
+            }                  
+        </style>      
+        <div>
+            <button class="user-button"> <slot name="label"></slot> </button>
+        </div>
+    </template>
+
+    <script>    
+        class fetchButton extends HTMLElement{
+            constructor(){
+                super()
+                this.importDocument = document.currentScript.ownerDocument;
+                this._label = null;
+            }
+
+            static get observedAttributes() {
+                return ['label']
+            }
+
+            attributeChangedCallback(name,oldValue,newValue){
+                if(this.shadowRoot){
+                    this.shadowRoot.querySelector(`[name="${name}"]`).innerHTML = this[name]
+                }
+            }
+
+            get label(){
+                return this.getAttribute('label')
+            }
+
+            set label(val){
+                this._label = val
+            }
+            render(){
+                let shadowRoot = this.attachShadow({mode: 'open'})
+                const template = this.importDocument.querySelector('#fetchButton')
+                const instance = template.content.cloneNode(true)
+
+                instance.querySelector('[name="label"]').innerHTML = this.label;
+
+                shadowRoot.appendChild(instance)
+            }
+
+            connectedCallback(){ // 
+                this.render();
+            }
+            
+        }
+        window.customElements.define('fetch-button',fetchButton)    
+    </script>
+</html>
+
