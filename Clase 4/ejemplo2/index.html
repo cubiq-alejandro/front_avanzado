@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <fetch-button></fetch-button>
+    <fetch-button></fetch-button>
+    <fetch-button></fetch-button>
+    <fetch-button></fetch-button>
+
+    <input type="submit">
+    
+    <script>
+    
+    class fetchButton extends HTMLElement{
+        constructor(){
+            super()
+        }
+
+        connectedCallback(){ // 
+            this.innerHTML = `<div>
+                <button> Fetch </button>
+            </div>
+            `
+        }
+    }
+
+    window.customElements.define('fetch-button',fetchButton)
+    
+    </script>
+
+</body>
+</html>

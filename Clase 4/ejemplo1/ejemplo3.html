@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="import" href="bower_components/google-sheets/google-sheets.html">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+<template is="dom-bind">
+    <google-sheets 
+        id="sheet"
+        key="1cZnh1LCfcK6C50O46IH4utxEHYrf05QwGGGLNBW5nO4"
+        tab-id="1"
+        published 
+        rows="{{rows}}" 
+        tab="{{tab}}" 
+        open-in-google-docs-url="{{openInGoogleDocsUrl}}"
+        >
+    </google-sheets>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        <template is="dom-repeat" items="[[rows]]">
+            <tr>
+                <th>{{item.gsx$id.$t}}</th>
+                <td>{{item.gsx$nombre.$t}}</td>
+                <td>{{item.gsx$apellido.$t}}</td>
+            </tr>                    
+        </template>                    
+        </tbody>
+    </table>        
+
+    <footer>
+        <h3>Spreadsheet rows:
+
+        </h3>
+        <h5>
+            Tab: {{tab.title}}
+            Actualizado: <span>{{tab.updated}}</span> <br />                    
+            Por: <template is="dom-repeat" items="{{rows.authors}}">{{item.name}}</template><br />    
+            <a href="{{openInGoogleDocsUrl}}" target="_blank" title="Open in Google Docs &rarr;"> Abrir Documento </a>
+        </h5>
+        </footer>
+    </template>    
+</body>
+</html>
